@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERCEDES-ARENDA | Премиальная аренда</title>
+    <!-- Подключение шрифтов и Font Awesome для иконок -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #1e1e1e;
+            line-height: 1.6;
+        }
+
+        /* Хедер с яркой стилистикой Mercedes */
+        header {
+            background: linear-gradient(135deg, #000000 0%, #1f1f1f 100%);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 4px solid #00adef; /* фирменный голубой Mercedes-Benz */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo i {
+            color: #00adef;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-weight: 300;
+            font-size: 1rem;
+            color: #ccc;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #00adef;
+        }
+
+        .contact-header {
+            background: #00adef;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
+        .contact-header a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* Hero секция с фотографией Mercedes (фон) */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1618843479313-15f8b9dba23c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #00adef;
+            color: #000;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 173, 239, 0.5);
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: #00adef;
+        }
+
+        /* Каталог автомобилей */
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .car-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .car-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .car-card:hover .car-img img {
+            transform: scale(1.1);
+        }
+
+        .car-info {
+            padding: 1.5rem;
+        }
+
+        .car-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-info .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00adef;
+            margin: 1rem 0;
+        }
+
+        .car-info .price small {
+            font-size: 1rem;
+            color: #777;
+            font-weight: 400;
+        }
+
+        .car-features {
+            display: flex;
+            gap: 1.5rem;
+            color: #555;
+            font-size: 0.95rem;
+            margin: 1rem 0;
+        }
+
+        .car-features i {
+            color: #00adef;
+            margin-right: 5px;
+        }
+
+        /* Бренды / преимущества */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: #00adef;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Форма бронирования */
+        .booking-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 4rem 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #00adef;
+            outline: none;
+        }
+
+        .btn-submit {
+            background: #000;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1.8rem;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: #00adef;
+            color: #000;
+        }
+
+        /* Футер */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 3rem 5% 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: #00adef;
+        }
+
+        .social i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Модальное окно (детали авто) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .modal-car-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo" id="home">
+            <h1><i class="fas fa-car"></i> Mercedes<span>Drive</span></h1>
+            <span>премиальная аренда Mercedes-Benz</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a class="nav-link" data-target="home">Главная</a></li>
+                <li><a class="nav-link" data-target="catalog">Автопарк</a></li>
+                <li><a class="nav-link" data-target="conditions">Условия</a></li>
+                <li><a class="nav-link" data-target="contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="contact-header">
+            <a href="tel:+78005553535" id="call-now"><i class="fas fa-phone-alt"></i> +7 (800) 555-35-35</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Аренда Mercedes-Benz</h2>
+            <p>Только премиальные авто • Полная страховка • Без ограничений</p>
+            <a class="btn" id="catalog-btn">Выбрать автомобиль</a>
+        </div>
+    </section>
+
+    <div class="container" id="catalog">
+        <h2 class="section-title">НАШ АВТОПАРК MERCEDES</h2>
+        
+        <!-- Галерея фотокарточек Mercedes -->
+        <div class="car-grid" id="car-grid">
+            <!-- Карточки будут наполнены скриптом, но пока оставим как есть, добавим data-атрибуты -->
+        </div>
+
+        <!-- Блок преимуществ -->
+        <div class="features" id="conditions">
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Страховка КАСКО</h4>
+                <p>Все автомобили застрахованы, вы под защитой</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <h4>Безлимитный пробег</h4>
+                <p>Никаких ограничений по километражу</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Подача в аэропорт</h4>
+                <p>Доставим авто в любую точку города</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-star"></i>
+                <h4>Только Mercedes</h4>
+                <p>Самый большой выбор моделей с трёхлучевой звездой</p>
+            </div>
+        </div>
+
+        <!-- Форма быстрого бронирования -->
+        <div class="booking-form" id="booking">
+            <h2 style="text-align: center; font-size: 2rem;">Забронировать Mercedes</h2>
+            <p style="text-align: center; margin-bottom: 1rem;">Заполните форму — мы перезвоним через 5 минут</p>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" id="name-input" placeholder="Александр">
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" id="phone-input" placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="form-group">
+                    <label>Модель Mercedes</label>
+                    <select id="car-select">
+                        <option>AMG GT</option>
+                        <option>E-Class</option>
+                        <option>G 63 AMG</option>
+                        <option>V-Class</option>
+                        <option>CLA 45</option>
+                        <option>Maybach S-Class</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Дата начала</label>
+                    <input type="date" id="date-input" value="2025-06-01">
+                </div>
+                <div class="form-group">
+                    <label>Количество дней</label>
+                    <input type="number" id="days-input" min="1" value="2">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="btn-submit" id="submit-booking">Забронировать</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дополнительный блок -->
+        <div style="background: #000; border-radius: 20px; padding: 2rem; margin: 3rem 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+            <div style="flex: 1 1 300px;">
+                <img src="https://hdpic.club/uploads/posts/2022-01/1642911718_7-hdpic-club-p-logotip-mersedesa-14.png" alt="Mercedes steering wheel" style="width: 100%; border-radius: 15px; box-shadow: 0 0 30px #00adef;">
+            </div>
+            <div style="flex: 1 1 300px; color: white;">
+                <h3 style="color: #00adef; font-size: 2rem;">Больше чем просто авто</h3>
+                <p style="font-size: 1.2rem;">Каждый Mercedes-Benz в нашем автопарке проходит тщательную предпрокатную подготовку. Вы получаете идеальный автомобиль с полным баком и безупречным сервисом.</p>
+                <p style="font-weight: 700; margin-top: 1rem;"> <i class="fas fa-check-circle" style="color: #00adef;"></i> Любые способы оплаты</p>
+                <p style="font-weight: 700;"> <i class="fas fa-check-circle" style="color: #00adef;"></i> Доставка и возврат 24/7</p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contacts">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Mercedes<span style="color: #00adef;">Drive</span></h3>
+                <p>Аренда премиальных автомобилей Mercedes-Benz в Москве и области. Только новые модели, полная страховка, без залогов.</p>
+                <div class="social" style="margin-top: 1rem;">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Модели</h3>
+                <ul>
+                    <li><a class="model-link" data-car="AMG GT">AMG GT</a></li>
+                    <li><a class="model-link" data-car="E-Class">E-Class</a></li>
+                    <li><a class="model-link" data-car="G 63 AMG">G-Class</a></li>
+                    <li><a class="model-link" data-car="V-Class">V-Class</a></li>
+                    <li><a class="model-link" data-car="Maybach S-Class">S-Class</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Информация</h3>
+                <ul>
+                    <li><a href="#" id="terms-link">Условия аренды</a></li>
+                    <li><a href="#" id="license-link">Водительские права</a></li>
+                    <li><a href="#" id="insurance-link">Страховка</a></li>
+                    <li><a href="#" id="faq-link">Частые вопросы</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +7 (800) 555-35-35</li>
+                    <li><i class="fas fa-envelope"></i> info@mercedes-drive.ru</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Звездная, 1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 MercedesDrive. Все права защищены. Сайт аренды Mercedes с фотографиями.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для деталей авто -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-img" class="modal-car-img" src="" alt="Mercedes">
+            <h3 id="modal-title"></h3>
+            <p id="modal-price"></p>
+            <p id="modal-desc"></p>
+            <button class="btn" id="modal-book">Забронировать</button>
+        </div>
+    </div>
+
+    <script>
+        // Массив автомобилей (данные из карточек)
+        const cars = [
+            { name: 'Mercedes-AMG GT', price: '25 000 ₽', features: '500+ л.с. / Бензин', desc: 'Спорткар с невероятной динамикой и дизайном.', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCRPO5xaBmfO7rl0ZbAj9YtKWM42iF-1Iizg&s' },
+            { name: 'Mercedes-Benz E-Class', price: '15 000 ₽', features: '249 л.с. / Дизель', desc: 'Бизнес-класс, комфорт и передовые технологии.', img: 'https://th.bing.com/th/id/R.76be648d2e312537e392f80743360c75?rik=wUdj%2fO5yG%2fAtlQ&pid=ImgRaw&r=0' },
+            { name: 'Mercedes-AMG G 63', price: '35 000 ₽', features: '585 л.с. / Бензин', desc: 'Легендарный Гелендваген для любых дорог.', img: 'https://tse1.mm.bing.net/th/id/OIP.34puhoaZ1LROJzCuc38MvgHaE8?w=4000&h=2667&rs=1&pid=ImgDetMain&o=7&rm=3' },
+            { name: 'Mercedes-Benz V-Class', price: '20 000 ₽', features: '7 мест / Климат-контроль', desc: 'Просторный минивэн для семьи или группы.', img: 'https://th.bing.com/th/id/R.765f9df7ec3e83b9138ae44784ab3f3b?rik=bgyhL1U514kxUQ&riu=http%3a%2f%2fcdn.motorpage.ru%2fPhotos%2f800%2f792E.jpg&ehk=iLlFHxhfzBScFspsyTHlXFI0mrsgIbw%2fAuxD95Ed%2bHg%3d&risl=&pid=ImgRaw&r=0' },
+            { name: 'Mercedes-AMG CLA 45', price: '18 000 ₽', features: '381 л.с. / Бензин', desc: 'Заряженный купе-седан для активной езды.', img: 'https://s.auto.drom.ru/i24274/c/photos/fullsize/mercedes-benz/cla-class/gen473x2_mercedes-benz_cla-class_1096390.jpg' },
+            { name: 'Mercedes-Maybach S-Class', price: '45 000 ₽', features: 'Люкс / Wi-Fi', desc: 'Флагманский седан представительского класса.', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM1K5ej5U_1VpkFjkwInwBaLjY617A7DeyPA&s' }
+        ];
+
+        // Функция для рендера карточек
+        function renderCars() {
+            const grid = document.getElementById('car-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            cars.forEach((car, index) => {
+                const card = document.createElement('div');
+                card.className = 'car-card';
+                card.setAttribute('data-index', index);
+                card.innerHTML = `
+                    <div class="car-img">
+                        <img src="${car.img}" alt="${car.name}">
+                    </div>
+                    <div class="car-info">
+                        <h3>${car.name}</h3>
+                        <p class="price">${car.price} <small>/ сутки</small></p>
+                        <div class="car-features">
+                            ${car.features.split(' / ').map(f => `<span><i class="fas fa-${f.includes('л.с.') ? 'tachometer-alt' : (f.includes('мест') ? 'users' : 'gas-pump')}"></i> ${f}</span>`).join('')}
+                        </div>
+                        <p>${car.desc}</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => openModal(index));
+                grid.appendChild(card);
+            });
+        }
+
+        // Модальное окно
+        const modal = document.getElementById('carModal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalDesc = document.getElementById('modal-desc');
+        const closeBtn = document.querySelector('.close');
+        const modalBook = document.getElementById('modal-book');
+
+        function openModal(index) {
+            const car = cars[index];
+            modalImg.src = car.img;
+            modalTitle.textContent = car.name;
+            modalPrice.textContent = car.price + ' / сутки';
+            modalDesc.textContent = car.desc + ' Характеристики: ' + car.features;
+            modal.style.display = 'flex';
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Бронирование из модалки
+        modalBook.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+            // Подставить модель в select
+            const select = document.getElementById('car-select');
+            if (select && modalTitle.textContent) {
+                for (let opt of select.options) {
+                    if (modalTitle.textContent.includes(opt.value)) {
+                        select.value = opt.value;
+                        break;
+                    }
+                }
+            }
+        });
+
+        // Плавная прокрутка к разделам
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                const target = document.getElementById(targetId);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Кнопка "Выбрать автомобиль"
+        document.getElementById('catalog-btn').addEventListener('click', function() {
+            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Кнопка телефона
+        document.getElementById('call-now').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Звоните +7 (800) 555-35-35. Мы работаем 24/7');
+        });
+
+        // Социальные сети
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Мы в соцсетях:@Beamch1k (откроется в новой версии)');
+            });
+        });
+
+        // Ссылки в футере (информация)
+        document.getElementById('terms-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Условия аренды: паспорт, права, стаж от 3 лет, залог от 10 000 ₽');
+        });
+        document.getElementById('license-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Водительские права РФ или международного образца. Стаж от 2 лет.');
+        });
+        document.getElementById('insurance-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Полис КАСКО включён в стоимость. Франшиза отсутствует.');
+        });
+        document.getElementById('faq-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Частые вопросы: можно ли выехать за границу? Да, по согласованию.');
+        });
+
+        // Ссылки на модели в футере
+        document.querySelectorAll('.model-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const carName = link.getAttribute('data-car');
+                const index = cars.findIndex(c => c.name.includes(carName));
+                if (index !== -1) openModal(index);
+            });
+        });
+
+        // Форма бронирования
+        document.getElementById('submit-booking').addEventListener('click', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name-input').value.trim();
+            const phone = document.getElementById('phone-input').value.trim();
+            const car = document.getElementById('car-select').value;
+            const date = document.getElementById('date-input').value;
+            const days = document.getElementById('days-input').value;
+            if (!name || !phone) {
+                alert('Пожалуйста, заполните имя и телефон');
+                return;
+            }
+            alert(`Спасибо, ${name}! Заявка на ${car} с ${date} на ${days} дн. принята. Мы перезвоним по номеру ${phone}`);
+        });
+
+        // Инициализация
+        renderCars();
+    </script>
+</body>
+</html>
